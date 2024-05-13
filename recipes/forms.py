@@ -1,8 +1,9 @@
 from django import forms
-from .models import Recipe,RecipeCategory
+from .models import Recipe, RecipeCategory
 
 from django import forms
 from .models import Recipe, RecipeCategory, RecipeCategoryRelationship
+
 
 class RecipeForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=RecipeCategory.objects.all(), required=True)
