@@ -3,14 +3,15 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-SECRET_KEY = 'django-insecure-#nezgj2v06kr+swb__bj_t(^wv+6pf5ilhs%nxnan5$j-#&i&)'
+DEBUG = False
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+STATIC_ROOT = BASE_DIR / 'static/'
 
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'almal.pythonanywhere.com', ]
 
 # Application definition
 
@@ -54,15 +55,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'recipes_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'almal$default',
+        'USER': 'almal',
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': 'almal.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+            'init_command': "SET NAMES 'utf8mb4';"
+                            "SET sql_mode = 'STRICT_TRANS_TABLES'",
+                             'charset': 'utf8mb4',
+},
+}
 }
 
 
@@ -84,7 +92,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -95,7 +102,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -109,4 +115,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'recipe_images')
-
