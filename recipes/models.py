@@ -28,4 +28,4 @@ class RecipeCategoryRelationship(models.Model):
     
 
     class Meta:
-        unique_together = ['recipe', 'category']  
+        unique_together = ['recipe', 'category']
