@@ -11,5 +11,9 @@ __pycache__/
 *.log
 *.pyc
 /route/__pycache__/
-/temruk/__pycache__/
-/titorovka/__pycache__/
+
+/media/
+/static/
+*.sqlite3
+.venv
+
